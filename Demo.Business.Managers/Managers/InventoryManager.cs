@@ -7,7 +7,6 @@ using Demo.Business.Common;
 using Demo.Business.Contracts;
 using Demo.Business.Entities;
 using Demo.Data.Contracts;
-using System.Diagnostics;
 
 namespace Demo.Business.Managers
 {
