@@ -9,6 +9,8 @@ using Core.Common.Contracts;
 using Demo.Client.Entities;
 using Core.Common;
 using System.ServiceModel;
+using System.ServiceModel.Description;
+using Demo.Client.Proxies.Service_Procies;
 
 namespace Demo.Admin.ViewModels
 {
@@ -119,7 +121,7 @@ namespace Demo.Admin.ViewModels
         {
             this.Products.Clear();
             var products = this._serviceFactory.CreateClient<IInventoryService>().GetProducts();
-            foreach( var p in products)
+            foreach (var p in products)
             {
                 this.Products.Add(p);
             }
@@ -137,15 +139,26 @@ namespace Demo.Admin.ViewModels
         {
             WithClient(this._serviceFactory.CreateClient<IInventoryService>(), inventoryClient =>
             {
+                this.SetCredentials(inventoryClient);
+
                 var products = inventoryClient.GetProducts();
-                if (products != null && products.Length > 0)
+                if (products == null || products.Length <= 0) return;
+                foreach (var p in products)
                 {
-                    foreach (var p in products)
-                    {
-                        this._products.Add(p);
-                    }
+                    this._products.Add(p);
                 }
             });
+        }
+
+        private void SetCredentials(IInventoryService inventoryClient)
+        {
+            // Remove the ClientCredentials behavior. 
+            var credentials = (inventoryClient as InventoryClient).ChannelFactory.Endpoint.Behaviors.Remove<ClientCredentials>();
+            credentials.UserName.UserName = "pingo";
+            credentials.UserName.Password = "07061971";
+
+            // Add a custom client credentials instance to the behaviors collection. 
+            (inventoryClient as InventoryClient).ChannelFactory.Endpoint.Behaviors.Add(credentials);
         }
 
         #endregion
@@ -174,6 +187,8 @@ namespace Demo.Admin.ViewModels
             {
                 WithClient(this._serviceFactory.CreateClient<IInventoryService>(), inventoryClient =>
                 {
+                    this.SetCredentials(inventoryClient);
+
                     product.IsActive = false;
                     inventoryClient.UpdateProduct(product);
                 });
@@ -194,6 +209,8 @@ namespace Demo.Admin.ViewModels
             {
                 WithClient(this._serviceFactory.CreateClient<IInventoryService>(), inventoryClient =>
                 {
+                    this.SetCredentials(inventoryClient);
+
                     product.IsActive = true;
                     inventoryClient.UpdateProduct(product);
                 });

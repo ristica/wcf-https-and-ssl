@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using System.ServiceModel;
 using Core.Common.ServiceModel;
 using Demo.Client.Contracts;
 using Demo.Client.Entities;
@@ -7,7 +8,7 @@ namespace Demo.Client.Proxies.Service_Procies
 {
     [Export(typeof(IInventoryService))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class InventoryClient : UserClientBase<IInventoryService>, IInventoryService
+    public class InventoryClient : ClientBase<IInventoryService>, IInventoryService
     {
         #region IInventoryService implementation
 

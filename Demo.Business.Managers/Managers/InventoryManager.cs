@@ -32,6 +32,8 @@ namespace Demo.Business.Managers
         {
             return ExecuteFaultHandledOperation(() =>
             {
+                var ctx = ServiceSecurityContext.Current;
+
                 var productRepository = this._repositoryFactory.GetDataRepository<IProductRepository>();
                 var products = productRepository.GetProducts();
 

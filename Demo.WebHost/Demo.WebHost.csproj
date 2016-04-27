@@ -16,7 +16,7 @@
     <RootNamespace>Demo.WebHost</RootNamespace>
     <AssemblyName>Demo.WebHost</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -77,7 +77,9 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -107,6 +109,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="InventoryService.svc" />
+    <Content Include="ReadMe.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -136,9 +139,9 @@
       <Project>{0cea14ee-aa7b-482e-963e-75b04911ba4d}</Project>
       <Name>Demo.Business.Managers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Demo.Securiry\Demo.Securiry.csproj">
-      <Project>{b96ef699-6573-4282-ab74-f5cdadd07329}</Project>
-      <Name>Demo.Securiry</Name>
+    <ProjectReference Include="..\Demo.SecurityProvider\Demo.SecurityProvider.csproj">
+      <Project>{aed724be-2efc-4aed-b35b-43579615a7e2}</Project>
+      <Name>Demo.SecurityProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -156,7 +159,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>32512</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:32512/</IISUrl>
+          <IISUrl>https://localhost/Demo.WebHost</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
