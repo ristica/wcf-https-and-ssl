@@ -1,8 +1,8 @@
-﻿using Core.Common.Core;
+﻿using System;
+using Core.Common.Core;
 using Demo.Business.Bootstrapper;
-using System;
 
-namespace Demo.ServiceHost.Web
+namespace Demo.WebHost
 {
     public class Global : System.Web.HttpApplication
     {

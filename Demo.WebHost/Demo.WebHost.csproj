@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{49923DB2-5C8F-42C0-8F12-633DD70A62DE}</ProjectGuid>
+    <ProjectGuid>{00DFFCB8-DF65-42D6-8EEC-524D7BA38E7D}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo.ServiceHost.Web</RootNamespace>
-    <AssemblyName>Demo.ServiceHost.Web</AssemblyName>
+    <RootNamespace>Demo.WebHost</RootNamespace>
+    <AssemblyName>Demo.WebHost</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -77,7 +77,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -97,6 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -116,12 +119,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core.Common.Contracts\Core.Common.Contracts.csproj">
+      <Project>{f1d533f9-31fc-4c34-86a7-416161fb86c4}</Project>
+      <Name>Core.Common.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core.Common\Core.Common.csproj">
       <Project>{8d236a26-8d80-44c5-ad20-97302af77ea0}</Project>
       <Name>Core.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Demo.Business.Bootstrapper\Demo.Business.Bootstrapper.csproj">
-      <Project>{94E8D7C1-AF9D-466D-A129-CB0EACFCF067}</Project>
+      <Project>{94e8d7c1-af9d-466d-a129-cb0eacfcf067}</Project>
       <Name>Demo.Business.Bootstrapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Demo.Business.Contracts\Demo.Business.Contracts.csproj">
@@ -131,6 +138,10 @@
     <ProjectReference Include="..\Demo.Business.Managers\Demo.Business.Managers.csproj">
       <Project>{0cea14ee-aa7b-482e-963e-75b04911ba4d}</Project>
       <Name>Demo.Business.Managers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Demo.Securiry\Demo.Securiry.csproj">
+      <Project>{b96ef699-6573-4282-ab74-f5cdadd07329}</Project>
+      <Name>Demo.Securiry</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -146,9 +157,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54047</DevelopmentServerPort>
+          <DevelopmentServerPort>32512</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1234/</IISUrl>
+          <IISUrl>http://localhost:32512/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
