@@ -154,8 +154,14 @@ namespace Demo.Admin.ViewModels
         {
             // Remove the ClientCredentials behavior. 
             var credentials = (inventoryClient as InventoryClient).ChannelFactory.Endpoint.Behaviors.Remove<ClientCredentials>();
+
+            // serviceCredentials
             credentials.UserName.UserName = "pingo";
             credentials.UserName.Password = "07061971";
+
+            //// basic security
+            //credentials.UserName.UserName = "aleksandar.r@gmx.at";
+            //credentials.UserName.Password = "Rista_23";
 
             // Add a custom client credentials instance to the behaviors collection. 
             (inventoryClient as InventoryClient).ChannelFactory.Endpoint.Behaviors.Add(credentials);
